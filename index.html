@@ -8,17 +8,21 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     header {
       background-color: #333;
       padding: 10px;
-      border-radius: 10px 10px 0 0;
+      border-radius: 10px;
+      margin-bottom: 20px;
     }
 
     nav {
       background-color: #444;
-      border-radius: 0 0 10px 10px;
+      border-radius: 10px;
       overflow: hidden;
     }
 
@@ -34,6 +38,10 @@
     nav a:hover {
       background-color: #555;
     }
+
+    .content {
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -43,14 +51,35 @@
 </header>
 
 <nav>
-  <a href="#reiter1">Reiter 1</a>
-  <a href="#reiter2">Reiter 2</a>
-  <a href="#reiter3">Reiter 3</a>
-  <a href="#reiter4">Reiter 4</a>
-  <a href="#reiter5">Reiter 5</a>
+  <a href="#reiter1" onclick="showTabs('reiter1')">Reiter 1</a>
+  <a href="#reiter2" onclick="showTabs('reiter2')">Reiter 2</a>
+  <a href="#reiter3" onclick="showTabs('reiter3')">Reiter 3</a>
+  <a href="#reiter4" onclick="showTabs('reiter4')">Reiter 4</a>
+  <a href="#reiter5" onclick="showTabs('reiter5')">Reiter 5</a>
 </nav>
 
-<!-- Hier fügst du den Inhalt für jeden Reiter ein -->
+<div class="content" id="reiter1Content">
+  <!-- Inhalt für Reiter 1 -->
+  <h2>Reiter 1 Inhalt</h2>
+  <p>Hier ist der Inhalt für Reiter 1.</p>
+</div>
+
+<script>
+  function showTabs(tabId) {
+    // Verstecke alle Reiter-Inhalte
+    document.querySelectorAll('.content').forEach(content => {
+      content.style.display = 'none';
+    });
+
+    // Zeige den ausgewählten Reiter-Inhalt an
+    document.getElementById(tabId + 'Content').style.display = 'block';
+
+    // Ändere die Farbe des ausgewählten Reiters
+    document.querySelectorAll('nav a').forEach(link => {
+      link.style.backgroundColor = (link.getAttribute('href') === '#' + tabId) ? '#555' : '#444';
+    });
+  }
+</script>
 
 </body>
 </html>
